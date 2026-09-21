@@ -164,12 +164,14 @@ namespace GUO.Renderer.Animations
             return _animationLoader.ReadUOPAnimationFrames(id, action, dir, type, fileIndex, ff);
         }
 
-        private Span<AnimationsLoader.FrameInfo> ReadMulFrames(int fileIndex, AnimationsLoader.AnimationDirection ff)
+        // A verdata block's position is in verdata.mul, not the anim file, so the set (keyed by anim file and position)
+        // is not asked for it.
+        private Span<AnimationsLoader.FrameInfo> ReadMulFrames(int fileIndex, AnimationsLoader.AnimationDirection ff, bool isVerdata)
         {
             var content = _animationLoader.FileManager.Content;
-            if (content != null && content.TryAnimationMul(fileIndex, ff.Position, ff.Size, out var set))
+            if (!isVerdata && content != null && content.TryAnimationMul(fileIndex, ff.Position, ff.Size, out var set))
                 return set;
-            return _animationLoader.ReadMULAnimationFrames(fileIndex, ff);
+            return _animationLoader.ReadMULAnimationFrames(fileIndex, ff, isVerdata);
         }
 
         private IndexAnimation GetIndexAnim(ushort id, ref ushort hue, bool isCorpse)
@@ -224,6 +226,7 @@ namespace GUO.Renderer.Animations
                                 ref readonly var animIdx = ref indices[i * AnimationsLoader.MAX_DIRECTIONS + d];
                                 index.Groups[i].Direction[d].Address = animIdx.Position;
                                 index.Groups[i].Direction[d].Size = /*index.FileIndex > 0 ? Math.Max(1, animIdx.Size) :*/ animIdx.Size;
+                                index.Groups[i].Direction[d].IsVerdata = animIdx.IsVerdata;
                             }
                         }
 
@@ -381,7 +384,7 @@ namespace GUO.Renderer.Animations
                         Size = groupObj.Direction[dir].Size,
                     };
 
-                    frames = ReadMulFrames(index.FileIndex, ff);
+                    frames = ReadMulFrames(index.FileIndex, ff, groupObj.Direction[dir].IsVerdata);
                 }
 
                 if (frames.IsEmpty)
