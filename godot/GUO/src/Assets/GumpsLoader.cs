@@ -127,7 +127,7 @@ namespace GUO.Assets
         ///
         /// A File.Exists per gump would be a disk hit for every frame of every open window.
         /// </summary>
-        private void LoadOurs()
+        public void LoadOurs()
         {
             _ours.Clear();
 

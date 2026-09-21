@@ -82,6 +82,12 @@ namespace GUO.Renderer
             height = ReadIntegerFromData(ref index);
         }
 
+        public void Clear()
+        {
+            m_IDs.Clear();
+            m_Data.Clear();
+        }
+
         public void Set(ulong textureID, int width, int height, ReadOnlySpan<uint> pixels)
         {
             if (Has(textureID))

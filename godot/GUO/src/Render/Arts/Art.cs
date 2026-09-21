@@ -75,6 +75,20 @@ namespace GUO.Renderer.Arts
         public static int LandOntoLandLayer, StaticOntoLandLayer;
         // END PORT DEVIATION (GUO)
 
+        public void Reload()
+        {
+            _artLoader.LoadOurs();
+            Array.Clear(_spriteInfos);
+            Array.Clear(_realArtBounds);
+            _picker.Clear();
+            // PORT DEVIATION (GUO): the caches GUO keeps per sprite go with
+            // the sprites, as in Refresh: wall-plane classification
+            // (ADR-0039) and Enhanced HD textures.
+            GUO.Renderer.Lights.WallFaces.ClearCache();
+            RefreshAllHD();
+            // END PORT DEVIATION (GUO)
+        }
+
         public ref readonly SpriteInfo GetLand(uint idx)
             => ref Get((uint)(idx & ~0x4000));
 

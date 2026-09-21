@@ -3682,6 +3682,45 @@ namespace GUO.Game.UI.Gumps
 
             startY += _disableAutoMove.Height + 2;
 
+            startX = 5;
+            startY += 10;
+
+            NiceButton reloadArt = new NiceButton
+            (
+                startX,
+                startY,
+                190,
+                20,
+                ButtonAction.Activate,
+                ResGumps.ReloadOurAssets,
+                0,
+                TEXT_ALIGN_TYPE.TS_LEFT
+            )
+            {
+                ButtonParameter = -1,
+                IsSelectable = false
+            };
+
+            reloadArt.MouseUp += (sender, e) =>
+            {
+                if (e.Button != MouseButtonType.Left)
+                {
+                    return;
+                }
+
+                Client.Game.UO.Arts.Reload();
+                Client.Game.UO.Gumps.Reload();
+                Client.Game.UO.Sounds.Reload();
+                Client.Game.UO.FileManager.Clilocs.Reload();
+                // PORT DEVIATION (GUO): the world is drawn from baked chunk
+                // meshes, not from the sprite arrays every frame; re-bake
+                // them, as the Enhanced HD toggle does.
+                ThemeManager.Reapply(World);
+                GameActions.Print(World, ResGumps.OurAssetsReloaded);
+            };
+
+            rightArea.Add(reloadArt);
+
             Add(rightArea, PAGE);
         }
 

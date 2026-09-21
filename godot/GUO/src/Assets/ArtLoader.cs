@@ -96,7 +96,7 @@ namespace GUO.Assets
             LoadOurs();
         }
 
-        private void LoadOurs()
+        public void LoadOurs()
         {
             _ourStatics.Clear();
             _ourLand.Clear();

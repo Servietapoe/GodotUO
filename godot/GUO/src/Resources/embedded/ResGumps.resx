@@ -1682,4 +1682,10 @@ start your first counter</value>
   <data name="JournalTranslationLabel" xml:space="preserve">
     <value>[Machine translation {0} &gt; {1}] </value>
   </data>
+  <data name="ReloadOurAssets" xml:space="preserve">
+    <value>Reload our art, gumps, sounds and strings</value>
+  </data>
+  <data name="OurAssetsReloaded" xml:space="preserve">
+    <value>Our assets reloaded.</value>
+  </data>
 </root>

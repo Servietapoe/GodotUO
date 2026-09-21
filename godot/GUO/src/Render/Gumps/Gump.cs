@@ -18,6 +18,13 @@ namespace GUO.Renderer.Gumps
             _spriteInfos = new SpriteInfo[gumpsLoader.File.Entries.Length];
         }
 
+        public void Reload()
+        {
+            _gumpsLoader.LoadOurs();
+            System.Array.Clear(_spriteInfos);
+            _picker.Clear();
+        }
+
         public ref readonly SpriteInfo GetGump(uint idx)
         {
             if (idx >= _spriteInfos.Length)
