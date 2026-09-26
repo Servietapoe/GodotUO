@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: BSD-2-Clause
+// SPDX-License-Identifier: BSD-2-Clause
 
 using GUO.Game.Scenes;
 using GUO.Renderer;
@@ -22,6 +22,7 @@ namespace GUO.Game.UI.Controls
             Y = int.Parse(gparams[2]);
             _graphic = UInt16Converter.Parse(gparams[8]);
             _hue = UInt16Converter.Parse(gparams[9]);
+            // The final arguments are item offsets. Button bounds come from its gump art.
             _tileX = int.Parse(gparams[10]);
             _tileY = int.Parse(gparams[11]);
             ContainsByBounds = true;
