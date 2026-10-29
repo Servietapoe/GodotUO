@@ -1,9 +1,9 @@
 {
   "schema": "guo/upstream_pin@1",
   "repo": "https://github.com/ClassicUO/ClassicUO.git",
-  "commit": "007ef8c3e13dec13fcc02387fe4817ef6f371c85",
-  "subject": "Read item art and ground of our own from a folder",
-  "committed": "2026-09-08T07:58:55+02:00",
-  "reviewed_at": "2026-09-20T15:26:53+00:00",
+  "commit": "ee79d7ebc1cc0e53ff84fe6cae17d389e2737f93",
+  "subject": "prevent closing containers when changing facets",
+  "committed": "2026-09-29T08:18:00+02:00",
+  "reviewed_at": "2026-10-29T19:37:55+00:00",
   "note": "Upstream reviewed up to this commit. Commits after it have not yet been assessed for porting. Update with: launchers\\dev\\sync_upstream.bat --pin"
 }
